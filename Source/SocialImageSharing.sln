@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{6D6277A0-4CD4-4735-A45A-9F781B82D909}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{0C7307FA-C413-4DDB-8131-5B17C1DA9D4F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{252F61B6-0360-4A4E-8EB5-50E6698B744A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialImageSharing.Common", "Common\SocialImageSharing.Common\SocialImageSharing.Common.csproj", "{C9E02205-F8A2-4CBA-8020-2D8A0BE9D6F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialImageSharing.Data", "Data\SocialImageSharing.Data\SocialImageSharing.Data.csproj", "{E89C873E-F169-4DF7-A80A-878E3D075403}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialImageSharing.Data.Common", "Data\SocialImageSharing.Data.Common\SocialImageSharing.Data.Common.csproj", "{F85E4373-52B3-4F60-8F49-CB2784A9A854}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialImageSharing.Data.Models", "Data\SocialImageSharing.Data.Models\SocialImageSharing.Data.Models.csproj", "{A467F6D8-216F-4595-B316-2D6C56E6BCDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialImageSharing.Web", "Web\SocialImageSharing.Web\SocialImageSharing.Web.csproj", "{168F7662-88D3-4871-97FD-93BD86A514B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{795A9CFC-D985-4B13-9F94-13F5F74A0C89}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialImageSharing.Web.Infrastructure", "Web\SocialImageSharing.Web.Infrastructure\SocialImageSharing.Web.Infrastructure.csproj", "{2D9C69E0-4C7F-4E4F-8D1E-94DE1B45BFBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9E02205-F8A2-4CBA-8020-2D8A0BE9D6F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9E02205-F8A2-4CBA-8020-2D8A0BE9D6F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9E02205-F8A2-4CBA-8020-2D8A0BE9D6F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9E02205-F8A2-4CBA-8020-2D8A0BE9D6F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E89C873E-F169-4DF7-A80A-878E3D075403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E89C873E-F169-4DF7-A80A-878E3D075403}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E89C873E-F169-4DF7-A80A-878E3D075403}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E89C873E-F169-4DF7-A80A-878E3D075403}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F85E4373-52B3-4F60-8F49-CB2784A9A854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F85E4373-52B3-4F60-8F49-CB2784A9A854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F85E4373-52B3-4F60-8F49-CB2784A9A854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F85E4373-52B3-4F60-8F49-CB2784A9A854}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A467F6D8-216F-4595-B316-2D6C56E6BCDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A467F6D8-216F-4595-B316-2D6C56E6BCDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A467F6D8-216F-4595-B316-2D6C56E6BCDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A467F6D8-216F-4595-B316-2D6C56E6BCDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{168F7662-88D3-4871-97FD-93BD86A514B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{168F7662-88D3-4871-97FD-93BD86A514B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{168F7662-88D3-4871-97FD-93BD86A514B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{168F7662-88D3-4871-97FD-93BD86A514B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D9C69E0-4C7F-4E4F-8D1E-94DE1B45BFBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D9C69E0-4C7F-4E4F-8D1E-94DE1B45BFBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D9C69E0-4C7F-4E4F-8D1E-94DE1B45BFBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D9C69E0-4C7F-4E4F-8D1E-94DE1B45BFBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C9E02205-F8A2-4CBA-8020-2D8A0BE9D6F3} = {252F61B6-0360-4A4E-8EB5-50E6698B744A}
+		{E89C873E-F169-4DF7-A80A-878E3D075403} = {0C7307FA-C413-4DDB-8131-5B17C1DA9D4F}
+		{F85E4373-52B3-4F60-8F49-CB2784A9A854} = {0C7307FA-C413-4DDB-8131-5B17C1DA9D4F}
+		{A467F6D8-216F-4595-B316-2D6C56E6BCDB} = {0C7307FA-C413-4DDB-8131-5B17C1DA9D4F}
+		{168F7662-88D3-4871-97FD-93BD86A514B7} = {6D6277A0-4CD4-4735-A45A-9F781B82D909}
+		{2D9C69E0-4C7F-4E4F-8D1E-94DE1B45BFBB} = {6D6277A0-4CD4-4735-A45A-9F781B82D909}
+	EndGlobalSection
+EndGlobal
