@@ -34,6 +34,46 @@ namespace SocialImageSharing.Data
 			}
 		}
 
+		public IDeletableEntityRepository<Post> Posts
+		{
+			get
+			{
+				return this.GetRepository<Post>();
+			}
+		}
+
+		public IDeletableEntityRepository<PostComment> PostComments
+		{
+			get
+			{
+				return this.GetRepository<PostComment>();
+			}
+		}
+
+		public IDeletableEntityRepository<PostLike> PostLikes
+		{
+			get
+			{
+				return this.GetRepository<PostLike>();
+			}
+		}
+
+		public IDeletableEntityRepository<CommentLike> CommentLikes
+		{
+			get
+			{
+				return this.GetRepository<CommentLike>();
+			}
+		}
+
+		public IDeletableEntityRepository<UserFavoritePost> UserFavoritePosts
+		{
+			get
+			{
+				return this.GetRepository<UserFavoritePost>();
+			}
+		}
+
 		public int SaveChanges()
 		{
 			return this.context.SaveChanges();

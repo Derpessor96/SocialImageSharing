@@ -12,6 +12,16 @@ namespace SocialImageSharing.Data
 	{
 		IDeletableEntityRepository<User> Users { get; }
 
+		IDeletableEntityRepository<Post> Posts { get; }
+
+		IDeletableEntityRepository<PostComment> PostComments { get; }
+
+		IDeletableEntityRepository<PostLike> PostLikes { get; }
+
+		IDeletableEntityRepository<CommentLike> CommentLikes { get; }
+
+		IDeletableEntityRepository<UserFavoritePost> UserFavoritePosts { get; }
+
 		int SaveChanges();
 	}
 }

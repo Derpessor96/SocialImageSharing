@@ -14,6 +14,8 @@ namespace SocialImageSharing.Web
     {
         protected void Application_Start()
 		{
+			ViewEngines.Engines.Clear();
+			ViewEngines.Engines.Add(new RazorViewEngine());
 			var autoMapperConfig = new AutoMapperConfig(Assembly.GetExecutingAssembly());
 			autoMapperConfig.Execute();
 

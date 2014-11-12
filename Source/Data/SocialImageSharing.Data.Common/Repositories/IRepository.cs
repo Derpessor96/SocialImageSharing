@@ -7,6 +7,8 @@
 	{
 		IQueryable<T> All();
 
+		IQueryable<T> AllIncluding(string path);
+
 		T GetById(int id);
 
 		void Add(T entity);

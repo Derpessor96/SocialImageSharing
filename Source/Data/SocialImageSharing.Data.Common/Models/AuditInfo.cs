@@ -5,7 +5,6 @@
 
 	public abstract class AuditInfo : IAuditInfo
 	{
-
 		public DateTime CreatedOn { get; set; }
 
 		[NotMapped]
