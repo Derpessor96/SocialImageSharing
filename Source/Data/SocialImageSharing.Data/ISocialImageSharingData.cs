@@ -2,6 +2,7 @@
 using SocialImageSharing.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ namespace SocialImageSharing.Data
 {
 	public interface ISocialImageSharingData
 	{
+		DbContext Context { get; }
+
 		IDeletableEntityRepository<User> Users { get; }
 
 		IDeletableEntityRepository<Post> Posts { get; }

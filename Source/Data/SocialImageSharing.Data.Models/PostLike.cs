@@ -26,7 +26,7 @@ namespace SocialImageSharing.Data.Models
 		public virtual Post Post { get; set; }
 
 		[Range(-1, 1)]
-		public byte Value { get; set; }
+		public short Value { get; set; }
 
 		public bool IsDeleted { get; set; }
 

@@ -1,0 +1,25 @@
+﻿@Html.ActionLink("Best", "Best", null, new { @class = "btn btn-primary" })
+
+<h2 class="text-center">Latest posts</h2>
+
+<div class="container" id="posts-container">
+	@Html.Action("Posts", new { page = 0, orderBy = "date" })
+</div>
+
+<div style="display:none;" id="posts-loading">Loading</div>
+
+@Ajax.ActionLink("Load more posts", "Posts",
+	new { page = 1, orderBy = "date" },
+	new AjaxOptions()
+	{
+		LoadingElementId = "posts-loading",
+		InsertionMode = InsertionMode.InsertAfter,
+		UpdateTargetId = "posts-container",
+		OnBegin = "beginAjax",
+		OnComplete = "completeAjax"
+	},
+	new { id = "load-posts-button" })
+
+@section scripts{
+	@Scripts.Render("~/Scripts/UI/postsListLoadButton.js");
+}

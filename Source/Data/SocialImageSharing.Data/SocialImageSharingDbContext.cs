@@ -19,6 +19,16 @@ namespace SocialImageSharing.Data
 			Database.SetInitializer(new MigrateDatabaseToLatestVersion<SocialImageSharingDbContext, Configuration>());
 		}
 
+		public virtual IDbSet<Post> Posts { get; set; }
+
+		public virtual IDbSet<PostComment> PostComments { get; set; }
+
+		public virtual IDbSet<PostLike> PostLikes { get; set; }
+
+		public virtual IDbSet<CommentLike> CommentLikes { get; set; }
+
+		public virtual IDbSet<UserFavoritePost> UserFavoritePosts { get; set; }
+
 		public static SocialImageSharingDbContext Create()
 		{
 			return new SocialImageSharingDbContext();

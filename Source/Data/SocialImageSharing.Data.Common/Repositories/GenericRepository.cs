@@ -32,7 +32,7 @@
 			return this.DbSet.Include(path);
 		}
 
-		public virtual T GetById(int id)
+		public virtual T GetById(object id)
 		{
 			return this.DbSet.Find(id);
 		}

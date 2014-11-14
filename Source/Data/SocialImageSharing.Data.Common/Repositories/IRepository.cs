@@ -9,7 +9,7 @@
 
 		IQueryable<T> AllIncluding(string path);
 
-		T GetById(int id);
+		T GetById(object id);
 
 		void Add(T entity);
 

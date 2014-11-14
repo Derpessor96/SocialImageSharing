@@ -21,9 +21,17 @@ namespace SocialImageSharing.Data
 			this.repositories = new Dictionary<Type, object>();
 		}
 
-		public SocialImageSharingData()
-			: this(new SocialImageSharingDbContext())
+		//public SocialImageSharingData()
+		//	: this(new SocialImageSharingDbContext())
+		//{
+		//}
+
+		public DbContext Context
 		{
+			get
+			{
+				return this.context;
+			}
 		}
 
 		public IDeletableEntityRepository<User> Users
@@ -87,7 +95,6 @@ namespace SocialImageSharing.Data
 			{
 				var newRepository = Activator.CreateInstance(typeof(DeletableEntityRepository<T>), this.context);
 				this.repositories.Add(typeOfRepository, newRepository);
-
 			}
 
 			return (IDeletableEntityRepository<T>)this.repositories[typeOfRepository];

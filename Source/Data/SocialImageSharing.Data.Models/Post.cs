@@ -24,6 +24,8 @@ namespace SocialImageSharing.Data.Models
 
 		public byte[] Image { get; set; }
 
+		public string ImageExtension { get; set; }
+
 		public string CreatorId { get; set; }
 
 		[InverseProperty("Posts")]
