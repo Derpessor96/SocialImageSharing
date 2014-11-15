@@ -1,0 +1,137 @@
+﻿@model SocialImageSharing.Web.ViewModels.Posts.PostDetailsViewModel
+@{
+	ViewBag.Title = "PostDetails";
+}
+
+<h2 class="text-center">@Model.Title</h2>
+
+<div class="row">
+	<p>
+		by
+		@Html.ActionLink(Model.CreatorName, "PostsByRating", "Profiles", new
+			{
+				id = Model.CreatorId
+			}, null)
+	</p>
+</div>
+
+<div class="row">
+	<img class="img-responsive img-center" src='@Url.Action("GetPostImage", "Images", new { id = Model.Id })' />
+</div>
+
+<div class="row">
+	<div class="col-md-2">
+		<div class="well">
+			Rating
+			<br />
+			@if (Request.IsAuthenticated)
+			{
+				@Ajax.ActionLink(" ", "LikePost", new
+				{
+					id = Model.Id,
+					value = 1
+				}, new AjaxOptions()
+				{
+					HttpMethod = "post",
+					OnSuccess = "like"
+				}, new
+				{
+					style = "display:" + (Model.LikeValue == 1 ? "none;" : ""),
+					id = "like-button",
+					@class = "btn btn-default glyphicon glyphicon-chevron-up "
+				})
+				<br />
+			}
+			<span id="like-value" class="like-value">@Model.Rating</span>
+			@if (Request.IsAuthenticated)
+			{
+				<br />
+				@Ajax.ActionLink(" ", "LikePost", new
+				{
+					id = Model.Id,
+					value = -1
+				}, new AjaxOptions()
+				{
+					HttpMethod = "post",
+					OnSuccess = "dislike"
+				}, new
+					 {
+						 style = "display:" + (Model.LikeValue == -1 ? "none;" : ""),
+						 id = "dislike-button",
+						 @class = "btn btn-default glyphicon glyphicon-chevron-down"
+					 })
+			}
+			<br />
+		</div>
+	</div>
+	<div class="col-md-2">
+		<div class="well">
+			@Ajax.ActionLink("Favorite", "FavoritePost",
+				new
+				{
+					id = Model.Id
+				}, new AjaxOptions
+				{
+					HttpMethod = "post",
+					OnSuccess = "favorite"
+				}, new
+				{
+					style = "display:" + (Model.IsInFavorites ? "none;" : ""),
+					id = "favorite-button",
+					@class = "btn btn-primary"
+				})
+			@Ajax.ActionLink("Unfavorite", "UnfavoritePost",
+				new
+				{
+					id = Model.Id
+				}, new AjaxOptions
+				{
+					HttpMethod = "post",
+					OnSuccess = "unfavorite"
+				}, new
+				{
+					style = "display:" + (!Model.IsInFavorites ? "none;" : ""),
+					id = "unfavorite-button",
+					@class = "btn btn-danger"
+				})
+		</div>
+	</div>
+	<div class="col-md-8 well">@Model.Description</div>
+</div>
+
+<h3>Comments</h3>
+
+@* TODO: Add the comments *@
+
+@section scripts{
+	@if (Request.IsAuthenticated)
+	{
+		<script>
+			function like(data) {
+				$("#like-button").hide();
+				$("#dislike-button").show();
+				updateLikes(data);
+			}
+
+			function dislike(data) {
+				$("#like-button").show();
+				$("#dislike-button").hide();
+				updateLikes(data);
+			}
+
+			function updateLikes(data) {
+				$("#like-value").text(data);
+			}
+
+			function favorite() {
+				$("#favorite-button").hide();
+				$("#unfavorite-button").show();
+			}
+
+			function unfavorite() {
+				$("#favorite-button").show();
+				$("#unfavorite-button").hide();
+			}
+		</script>
+	}
+}

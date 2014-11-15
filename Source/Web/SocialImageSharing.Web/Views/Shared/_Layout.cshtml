@@ -20,7 +20,13 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li>@Html.ActionLink("View Posts", "Best", "Posts")</li>
+					<li>@Html.ActionLink("All Posts", "Best", "Posts")</li>
+					@if (Request.IsAuthenticated)
+					{
+						<li>@Html.ActionLink("Make a Post", "MakePost", "Posts")</li>
+						<li>@Html.ActionLink("Your Posts", "PostsByRating", "Profiles", new { id = User.Identity.GetUserId() }, null)</li>
+						<li>@Html.ActionLink("Your Favorites", "FavoritesByRating", "Profiles", new { id = User.Identity.GetUserId() }, null)</li>
+					}
 				</ul>
 				@Html.Partial("_LoginPartial")
 			</div>

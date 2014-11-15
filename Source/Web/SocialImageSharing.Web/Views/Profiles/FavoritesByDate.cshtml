@@ -1,0 +1,27 @@
+﻿@model SocialImageSharing.Web.ViewModels.Profiles.UserFavoritesViewModel
+
+@Html.ActionLink("Best", "FavoritesByRating", null, new { @class = "btn btn-primary" })
+
+<h2 class="text-center">Lates favorites by @Model.UserName (@Model.NumberOfFavorites)</h2>
+
+<div class="container" id="posts-container">
+	@Html.Action("GetUserFavorites", "Profiles", new { page = 0, userId = Model.Id, orderBy = "date" })
+</div>
+
+<div style="display:none;" id="posts-loading">Loading</div>
+
+@Ajax.ActionLink("Load more posts", "GetUserFavorites",
+	new { page = 1, userdId = Model.Id, orderBy = "date" },
+	new AjaxOptions()
+	{
+		LoadingElementId = "posts-loading",
+		InsertionMode = InsertionMode.InsertAfter,
+		UpdateTargetId = "posts-container",
+		OnBegin = "beginAjax",
+		OnComplete = "completeAjax"
+	},
+	new { id = "load-posts-button" })
+
+@section scripts{
+	@Scripts.Render("~/Scripts/UI/postsListLoadButton.js");
+}

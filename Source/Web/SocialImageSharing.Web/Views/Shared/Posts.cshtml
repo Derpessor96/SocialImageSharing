@@ -12,12 +12,14 @@
 			<div class="col-md-3">
 				<div class="well">
 					<h4 class="text-center">@Model[i + j].Title</h4>
-					<div class="image-container">
-						<img class="img-responsive" src='@Url.Action("GetPostImage", "Images", new { id = Model[i + j].Id })' />
-					</div>
+					<a href="/Posts/PostDetails?id=@Model[i + j].Id">
+						<div class="image-container">
+							<img class="img-responsive" src='@Url.Action("GetPostImage", "Images", new { id = Model[i + j].Id })' />
+						</div>
+					</a>
 					<small class="">Posted by: @Model[i + j].CreatorName</small>
 					<br />
-					<small>Posted at: @Model[i + j].CreatedOn.ToString("dd/mm/yyyy hh:mm")</small>
+					<small>Posted at: @Model[i + j].CreatedOn.ToString("dd/MM/yyyy hh:mm")</small>
 					<br />
 					<small>Rating: @Model[i + j].Rating</small>
 				</div>

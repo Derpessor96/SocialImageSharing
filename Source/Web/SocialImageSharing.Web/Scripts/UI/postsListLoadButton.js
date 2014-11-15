@@ -11,8 +11,11 @@ function completeAjax() {
 
 	$("#load-posts-button").on("click", function () {
 		var currentLink = $(this).attr("href");
-		var prefix = currentLink.substring(0, currentLink.indexOf("page=") + "page=".length);
-		var sufix = currentLink.substring(currentLink.indexOf("&orderBy="), currentLink.length);
+		
+		var pageIndex = currentLink.indexOf("page=");
+
+		var prefix = currentLink.substring(0, pageIndex + "page=".length);
+		var sufix = currentLink.substring(currentLink.indexOf("&", pageIndex + 1), currentLink.length);
 
 		$(this).attr("href", prefix + nextPage + sufix);
 

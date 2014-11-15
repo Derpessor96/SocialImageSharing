@@ -9,25 +9,15 @@ using System.Web;
 
 namespace SocialImageSharing.Web.ViewModels.Posts
 {
-	public class PostViewModel : IMapFrom<Post>, IHaveCustomMappings
+	public class PostDetailsViewModel : PostViewModel
 	{
-		public int Id { get; set; }
+		public int LikeValue { get; set; }
 
-		public string Title { get; set; }
+		public bool IsInFavorites { get; set; }
 
-		public string Description { get; set; }
-
-		public DateTime CreatedOn { get; set; }
-
-		public string CreatorId { get; set; }
-
-		public string CreatorName { get; set; }
-
-		public int Rating { get; set; }
-
-		public virtual void CreateMappings(IConfiguration configuration)
+		public override void CreateMappings(IConfiguration configuration)
 		{
-			configuration.CreateMap<Post, PostViewModel>()
+			configuration.CreateMap<Post, PostDetailsViewModel>()
 				.ForMember(dest => dest.CreatorName,
 					opt => opt.MapFrom(src => src.Creator.UserName))
 				.ForMember(dest => dest.CreatorId,

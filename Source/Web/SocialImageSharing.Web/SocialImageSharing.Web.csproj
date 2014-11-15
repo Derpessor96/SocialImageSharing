@@ -196,7 +196,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Posts\MakePostViewModel.cs" />
+    <Compile Include="ViewModels\Posts\PostDetailsViewModel.cs" />
     <Compile Include="ViewModels\Posts\PostViewModel.cs" />
+    <Compile Include="ViewModels\Profiles\UserFavoritesViewModel.cs" />
+    <Compile Include="ViewModels\Profiles\UserPostsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -240,7 +243,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
@@ -266,10 +268,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Posts\Best.cshtml" />
-    <Content Include="Views\Posts\Posts.cshtml" />
+    <Content Include="Views\Shared\Posts.cshtml" />
     <Content Include="Views\Posts\Latest.cshtml" />
     <Content Include="Views\Posts\MakePost.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Posts\PostDetails.cshtml" />
+    <Content Include="Views\Profiles\PostsByRating.cshtml" />
+    <Content Include="Views\Profiles\PostsByDate.cshtml" />
+    <Content Include="Views\Profiles\FavoritesByDate.cshtml" />
+    <Content Include="Views\Profiles\FavoritesByRating.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -277,8 +284,6 @@
     <Folder Include="Areas\Administration\Views\Admin\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Views\Comments\" />
-    <Folder Include="Views\Images\" />
-    <Folder Include="Views\Profiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Project_Readme.html" />
