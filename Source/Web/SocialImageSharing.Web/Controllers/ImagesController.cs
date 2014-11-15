@@ -18,7 +18,12 @@ namespace SocialImageSharing.Web.Controllers
 		public ActionResult GetPostImage(int id)
 		{
 			var imageData = this.Data.Posts.GetById(id).Image;
-			// TODO: Check the content type
+
+			if (imageData == null)
+			{
+				return Content("");
+			}
+
 			return File(imageData, "image/jpeg");
 		}
 	}

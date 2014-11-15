@@ -1,0 +1,31 @@
+﻿@model SocialImageSharing.Web.ViewModels.Posts.MakePostViewModel
+@{
+	ViewBag.Title = "MakePost";
+}
+
+<h1>Make a Post</h1>
+
+@using (Html.BeginForm("MakePost", "Posts", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+{
+	@Html.AntiForgeryToken()
+
+	<div class="row">
+		@Html.ValidationSummary("", new { @class = "text-danger" })
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.Title, new { @class = "control-label" })
+		@Html.EditorFor(model => model.Title, new { @class = "form-control" })
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.Description, new { @class = "control-label" })
+		@Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+	</div>
+
+	<div class="form-group">
+		@Html.TextBoxFor(model => model.ImageFile, new { type = "file" })
+	</div>
+
+	<input class="btn btn-lg" type="submit" value="Submit Post" />
+}
