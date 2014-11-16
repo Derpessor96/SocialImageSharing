@@ -1,6 +1,7 @@
 ﻿@model IList<SocialImageSharing.Web.ViewModels.Posts.PostViewModel>
 
 @{
+	Layout = null;
 	const int rowSize = 4;
 }
 
@@ -11,17 +12,17 @@
 		{
 			<div class="col-md-3">
 				<div class="well">
-					<h4 class="text-center">@Model[i + j].Title</h4>
-					<a href="/Posts/PostDetails?id=@Model[i + j].Id">
+					<h4 class="text-center">@Html.DisplayFor(m => Model[i + j].Title)</h4>
+					<a href="/Posts/PostDetails?id=@Html.DisplayFor(m => Model[i + j].Id)">
 						<div class="image-container">
 							<img class="img-responsive" src='@Url.Action("GetPostImage", "Images", new { id = Model[i + j].Id })' />
 						</div>
 					</a>
-					<small class="">Posted by: @Model[i + j].CreatorName</small>
+					<small class="">Posted by: @Html.DisplayFor(m => Model[i + j].CreatorName)</small>
 					<br />
-					<small>Posted at: @Model[i + j].CreatedOn.ToString("dd/MM/yyyy hh:mm")</small>
+					<small>Posted at: @Html.DisplayFor(m => Model[i + j].CreatedOn)</small>
 					<br />
-					<small>Rating: @Model[i + j].Rating</small>
+					<small>Rating: @Html.DisplayFor(m => Model[i + j].Rating)</small>
 				</div>
 			</div>
 		}

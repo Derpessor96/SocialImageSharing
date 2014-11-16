@@ -15,6 +15,8 @@ namespace SocialImageSharing.Web.ViewModels.Posts
 
 		public bool IsInFavorites { get; set; }
 
+		public ICollection<PostComment> Comments { get; set; }
+
 		public override void CreateMappings(IConfiguration configuration)
 		{
 			configuration.CreateMap<Post, PostDetailsViewModel>()

@@ -2,7 +2,7 @@
 
 @Html.ActionLink("Latest", "PostsByDate", null, new { @class = "btn btn-primary" })
 
-<h2 class="text-center">Best posts by @Model.UserName (@Model.NumberOfPosts)</h2>
+<h2 class="text-center">Best posts by @Html.DisplayFor(m => m.UserName) (@Html.DisplayFor(m => m.NumberOfPosts))</h2>
 
 <div class="container" id="posts-container">
 	@Html.Action("GetUserPosts", "Profiles", new { page = 0, creatorId = Model.Id, orderBy = "rating" })

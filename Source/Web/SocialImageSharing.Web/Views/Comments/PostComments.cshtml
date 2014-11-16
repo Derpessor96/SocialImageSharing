@@ -1,0 +1,22 @@
+﻿@model IEnumerable<SocialImageSharing.Web.ViewModels.Comments.CommentViewModel>
+
+@{
+	Layout = null;
+}
+
+@if (Request.IsAuthenticated)
+{
+	<div class="row" id="make-comment-container">
+		@Html.Partial("MakeComment", new SocialImageSharing.Web.ViewModels.Comments.CommentViewModel()
+		{
+			PostId = ViewBag.PostId
+		})
+	</div>
+}
+
+<div class="row" id="comments-container">
+	@foreach (var comment in Model)
+	{
+		@Html.Partial("SingleComment", comment)
+	}
+</div>

@@ -195,6 +195,7 @@
     <Compile Include="Models\UserTestViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Comments\CommentViewModel.cs" />
     <Compile Include="ViewModels\Posts\MakePostViewModel.cs" />
     <Compile Include="ViewModels\Posts\PostDetailsViewModel.cs" />
     <Compile Include="ViewModels\Posts\PostViewModel.cs" />
@@ -230,6 +231,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\UI\postDetailsLoggedIn.js" />
     <Content Include="Scripts\UI\postsListLoadButton.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
@@ -277,13 +279,16 @@
     <Content Include="Views\Profiles\PostsByDate.cshtml" />
     <Content Include="Views\Profiles\FavoritesByDate.cshtml" />
     <Content Include="Views\Profiles\FavoritesByRating.cshtml" />
+    <Content Include="Views\Comments\PostComments.cshtml" />
+    <Content Include="Views\Comments\MakeComment.cshtml" />
+    <Content Include="Views\Comments\SingleComment.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Admin\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Views\Comments\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Project_Readme.html" />

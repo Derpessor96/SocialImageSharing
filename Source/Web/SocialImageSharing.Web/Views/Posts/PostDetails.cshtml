@@ -3,7 +3,7 @@
 	ViewBag.Title = "PostDetails";
 }
 
-<h2 class="text-center">@Model.Title</h2>
+<h2 class="text-center">@Html.DisplayFor(m => m.Title)</h2>
 
 <div class="row">
 	<p>
@@ -27,46 +27,48 @@
 			@if (Request.IsAuthenticated)
 			{
 				@Ajax.ActionLink(" ", "LikePost", new
-				{
-					id = Model.Id,
-					value = 1
-				}, new AjaxOptions()
-				{
-					HttpMethod = "post",
-					OnSuccess = "like"
-				}, new
-				{
-					style = "display:" + (Model.LikeValue == 1 ? "none;" : ""),
-					id = "like-button",
-					@class = "btn btn-default glyphicon glyphicon-chevron-up "
-				})
+					{
+						id = Model.Id,
+						value = 1
+					}, new AjaxOptions()
+					{
+						HttpMethod = "post",
+						OnSuccess = "like"
+					}, new
+					{
+						style = "display:" + (Model.LikeValue == 1 ? "none;" : ""),
+						id = "like-button",
+						@class = "btn btn-default glyphicon glyphicon-chevron-up "
+					})
 				<br />
 			}
-			<span id="like-value" class="like-value">@Model.Rating</span>
+			<span id="like-value" class="like-value">@Html.DisplayFor(m => m.Rating)</span>
 			@if (Request.IsAuthenticated)
 			{
 				<br />
 				@Ajax.ActionLink(" ", "LikePost", new
-				{
-					id = Model.Id,
-					value = -1
-				}, new AjaxOptions()
-				{
-					HttpMethod = "post",
-					OnSuccess = "dislike"
-				}, new
-					 {
-						 style = "display:" + (Model.LikeValue == -1 ? "none;" : ""),
-						 id = "dislike-button",
-						 @class = "btn btn-default glyphicon glyphicon-chevron-down"
-					 })
+					{
+						id = Model.Id,
+						value = -1
+					}, new AjaxOptions()
+					{
+						HttpMethod = "post",
+						OnSuccess = "dislike"
+					}, new
+					{
+						style = "display:" + (Model.LikeValue == -1 ? "none;" : ""),
+						id = "dislike-button",
+						@class = "btn btn-default glyphicon glyphicon-chevron-down"
+					})
 			}
 			<br />
 		</div>
 	</div>
-	<div class="col-md-2">
-		<div class="well">
-			@Ajax.ActionLink("Favorite", "FavoritePost",
+	@if (Request.IsAuthenticated)
+	{
+		<div class="col-md-2">
+			<div class="well">
+				@Ajax.ActionLink("Favorite", "FavoritePost",
 				new
 				{
 					id = Model.Id
@@ -80,7 +82,7 @@
 					id = "favorite-button",
 					@class = "btn btn-primary"
 				})
-			@Ajax.ActionLink("Unfavorite", "UnfavoritePost",
+				@Ajax.ActionLink("Unfavorite", "UnfavoritePost",
 				new
 				{
 					id = Model.Id
@@ -94,44 +96,19 @@
 					id = "unfavorite-button",
 					@class = "btn btn-danger"
 				})
+			</div>
 		</div>
-	</div>
-	<div class="col-md-8 well">@Model.Description</div>
+	}
+	<div class="col-md-8 well">@Html.DisplayFor(m => m.Description)</div>
 </div>
 
 <h3>Comments</h3>
 
-@* TODO: Add the comments *@
+@Html.Action("PostComments", "Comments", new { postId = Model.Id })
 
 @section scripts{
 	@if (Request.IsAuthenticated)
 	{
-		<script>
-			function like(data) {
-				$("#like-button").hide();
-				$("#dislike-button").show();
-				updateLikes(data);
-			}
-
-			function dislike(data) {
-				$("#like-button").show();
-				$("#dislike-button").hide();
-				updateLikes(data);
-			}
-
-			function updateLikes(data) {
-				$("#like-value").text(data);
-			}
-
-			function favorite() {
-				$("#favorite-button").hide();
-				$("#unfavorite-button").show();
-			}
-
-			function unfavorite() {
-				$("#favorite-button").show();
-				$("#unfavorite-button").hide();
-			}
-		</script>
+		@Scripts.Render("~/Scripts/UI/postDetailsLoggedIn.js");
 	}
 }

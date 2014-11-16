@@ -1,0 +1,17 @@
+﻿@model SocialImageSharing.Web.ViewModels.Comments.CommentViewModel
+@using (Ajax.BeginForm("MakeComment", "Comments",
+	new AjaxOptions
+	{
+		HttpMethod = "post",
+		InsertionMode = InsertionMode.InsertBefore,
+		UpdateTargetId = "comments-container"
+	}, new
+	{
+		@class = "form"
+	}))
+{
+	@Html.ValidationSummary()
+	@Html.HiddenFor(c => c.PostId)
+	@Html.TextAreaFor(c => c.Content, new { @class = "form-control" })
+	<input type="submit" value="Send" class="btn btn-sm" />
+}

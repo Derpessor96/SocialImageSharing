@@ -11,7 +11,7 @@ namespace SocialImageSharing.Data.Models
 	{
 		public PostComment()
 		{
-			this.ChildComments = new HashSet<PostComment>();
+			this.Likes = new HashSet<CommentLike>();
 		}
 
 		public int Id { get; set; }
@@ -28,14 +28,7 @@ namespace SocialImageSharing.Data.Models
 		[InverseProperty("Comments")]
 		public virtual Post Post { get; set; }
 
-		public int? ParentCommentId { get; set; }
-
 		public ICollection<CommentLike> Likes { get; set; }
-
-		[InverseProperty("ChildComments")]
-		public virtual PostComment ParentComment { get; set; }
-
-		public virtual ICollection<PostComment> ChildComments { get; set; }
 
 		public bool IsDeleted { get; set; }
 
