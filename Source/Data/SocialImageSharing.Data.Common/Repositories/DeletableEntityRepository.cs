@@ -19,19 +19,9 @@
 			return base.All().Where(x => !x.IsDeleted);
 		}
 
-		public override IQueryable<T> AllIncluding(string path)
-		{
-			return base.AllIncluding(path).Where(x => !x.IsDeleted);
-		}
-
 		public IQueryable<T> AllWithDeleted()
 		{
 			return base.All();
-		}
-
-		public IQueryable<T> AllWithDeletedIncluding(string path)
-		{
-			return base.AllIncluding(path).Where(x => !x.IsDeleted);
 		}
 
 		public override void Delete(T entity)

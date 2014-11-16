@@ -6,8 +6,6 @@
     {
         IQueryable<T> AllWithDeleted();
 
-		IQueryable<T> AllWithDeletedIncluding(string path);
-
 		void HardDelete(T entity);
     }
 }

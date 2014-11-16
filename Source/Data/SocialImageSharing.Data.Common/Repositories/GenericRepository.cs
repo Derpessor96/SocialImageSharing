@@ -27,11 +27,6 @@
 			return this.DbSet.AsQueryable();
 		}
 
-		public virtual IQueryable<T> AllIncluding(string path)
-		{
-			return this.DbSet.Include(path);
-		}
-
 		public virtual T GetById(object id)
 		{
 			return this.DbSet.Find(id);
