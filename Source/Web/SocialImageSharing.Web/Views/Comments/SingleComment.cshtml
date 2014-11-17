@@ -1,47 +1,8 @@
 ﻿@model SocialImageSharing.Web.ViewModels.Comments.CommentViewModel
 
 <div class="row">
-	<div class="col-md-2">
-		<div class="well">
-			@if (Request.IsAuthenticated)
-			{
-				@Ajax.ActionLink(" ", "LikeComment", new
-						{
-							id = Model.PostId,
-							value = 1
-						}, new AjaxOptions()
-						{
-							HttpMethod = "post",
-							OnSuccess = "like"
-						}, new
-						{
-							style = "display:" + (Model.LikeValue == 1 ? "none;" : ""),
-							id = "like-button-" + Model.Id,
-							@class = "btn btn-default glyphicon glyphicon-chevron-up "
-						})
-				<br />
-			}
-			<span id="like-value" class="like-value">@Html.DisplayFor(m => m.Rating)</span>
-			@if (Request.IsAuthenticated)
-			{
-				<br />
-				@Ajax.ActionLink(" ", "LikeComment", new
-						{
-							id = Model.PostId,
-							value = -1
-						}, new AjaxOptions()
-						{
-							HttpMethod = "post",
-							OnSuccess = "dislike"
-						}, new
-						{
-							style = "display:" + (Model.LikeValue == -1 ? "none;" : ""),
-							id = "dislike-button-" + Model.Id,
-							@class = "btn btn-default glyphicon glyphicon-chevron-down"
-						})
-				<br />
-			}
-		</div>
+	<div class="col-md-2" id="comment-like-panel-@Model.Id">
+		@Html.Action("LikeComment", "Comments", new { id = Model.Id })
 	</div>
 	<div class="col-md-10">
 		<small class="">by @Html.DisplayFor(m => m.CreatorName)</small>

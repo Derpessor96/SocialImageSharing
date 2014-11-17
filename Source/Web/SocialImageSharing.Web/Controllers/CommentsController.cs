@@ -36,7 +36,7 @@ namespace SocialImageSharing.Web.Controllers
 
 			var commentViewModels = this.Data.PostComments.All()
 				.Where(c => c.PostId == postId)
-				.OrderBy(c => c.CreatedOn)
+				.OrderByDescending(c => c.CreatedOn)
 				.Project()
 				.To<CommentViewModel>();
 
@@ -88,58 +88,102 @@ namespace SocialImageSharing.Web.Controllers
 			this.Data.PostComments.Add(newDbComment);
 			this.Data.SaveChanges();
 
-			newComment.LikeValue = 0;
-
 			return PartialView("SingleComment", Mapper.Map<CommentViewModel>(newDbComment));
 		}
 
-		// TODO: Test
-		//[HttpPost]
-		//[Authorize]
-		//public ActionResult LikeComment(int? id, short value)
-		//{
-		//	if (id == null)
-		//	{
-		//		return new HttpStatusCodeResult(400, "Comment requires an id");
-		//	}
+		[HttpGet]
+		public ActionResult LikeComment(int id)
+		{
+			var comment = this.Data.PostComments.All()
+				.FirstOrDefault(c => c.Id == id);
 
-		//	var comment = this.Data.PostComments.All().FirstOrDefault(c => c.Id == id.Value);
+			var viewModel = new LikeCommentViewModel()
+			{
+				Comment = comment
+			};
 
-		//	if (comment == null)
-		//	{
-		//		return new HttpStatusCodeResult(404, "Comment not found");
-		//	}
+			if (Request.IsAuthenticated)
+			{
+				var userId = this.CurrentUser.Id;
 
-		//	if (value != 1 && value != -1)
-		//	{
-		//		return new HttpStatusCodeResult(400, "Value should be 1 or -1");
-		//	}
+				var currentUserLike = this.Data.CommentLikes.All()
+					.FirstOrDefault(l => l.CommentId == id && l.UserId == userId);
 
-		//	var user = this.CurrentUser;
-		//	var like = this.Data.PostLikes.All()
-		//		.FirstOrDefault(l => l.PostId == comment.Id && l.User.Id == user.Id);
+				viewModel.UserLikeValue = currentUserLike == null ? (short)0 : currentUserLike.Value;
+			}
 
-		//	if (like == null)
-		//	{
-		//		this.Data.CommentLikes.Add(new CommentLike()
-		//		{
-		//			User = user,
-		//			Comment = comment,
-		//			Value = value
-		//		});
-		//		this.Data.SaveChanges();
+			var commentLikes = this.Data.CommentLikes.All()
+				.Where(l => l.CommentId == comment.Id);
 
-		//		return Content((comment.Likes.Count(l => l.Value == 1) - comment.Likes.Count(l => l.Value == -1))
-		//			.ToString());
-		//	}
-		//	else
-		//	{
-		//		like.Value = value;
-		//		this.Data.SaveChanges();
+			viewModel.TotalLikeValue =
+				commentLikes.Count(l => l.Value == 1) -
+				commentLikes.Count(l => l.Value == -1);
 
-		//		return Content((comment.Likes.Count(l => l.Value == 1) - comment.Likes.Count(l => l.Value == -1))
-		//			.ToString());
-		//	}
-		//}
+			return PartialView(viewModel);
+		}
+
+		[HttpPost]
+		[Authorize]
+		public ActionResult LikeComment(int? id, short? value)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(400, "Comment requires an id");
+			}
+
+			if (value == null)
+			{
+				return this.LikeComment(id.Value);
+			}
+
+			var comment = this.Data.PostComments.All()
+				.FirstOrDefault(c => c.Id == id.Value);
+
+			if (comment == null)
+			{
+				return new HttpStatusCodeResult(404, "Comment not found");
+			}
+
+			if (value != -1 && value != 0 && value != 1)
+			{
+				return new HttpStatusCodeResult(400, "Value should be -1, 0 or 1");
+			}
+
+			var user = this.CurrentUser;
+			var like = this.Data.CommentLikes.All()
+				.FirstOrDefault(l => l.CommentId == comment.Id && l.User.Id == user.Id);
+
+			if (like == null)
+			{
+				like = new CommentLike()
+				{
+					CommentId = id.Value,
+					Value = value.Value,
+					UserId = user.Id
+				};
+
+				this.Data.CommentLikes.Add(like);
+			}
+			else
+			{
+				like.Value = value.Value;
+			}
+
+			this.Data.SaveChanges();
+
+			var commentLikes = this.Data.CommentLikes.All()
+				.Where(l => l.CommentId == comment.Id);
+
+			var resultViewModel = new LikeCommentViewModel()
+			{
+				Comment = comment,
+				UserLikeValue = like.Value,
+				TotalLikeValue =
+					commentLikes.Count(l => l.Value == 1) -
+					commentLikes.Count(l => l.Value == -1)
+			};
+
+			return PartialView(resultViewModel);
+		}
 	}
 }

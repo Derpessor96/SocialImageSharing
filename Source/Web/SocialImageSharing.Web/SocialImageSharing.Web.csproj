@@ -196,6 +196,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Comments\CommentViewModel.cs" />
+    <Compile Include="ViewModels\Comments\LikeCommentViewModel.cs" />
+    <Compile Include="ViewModels\Posts\LikePostViewModel.cs" />
     <Compile Include="ViewModels\Posts\MakePostViewModel.cs" />
     <Compile Include="ViewModels\Posts\PostDetailsViewModel.cs" />
     <Compile Include="ViewModels\Posts\PostViewModel.cs" />
@@ -283,6 +285,8 @@
     <Content Include="Views\Comments\MakeComment.cshtml" />
     <Content Include="Views\Comments\SingleComment.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Posts\LikePost.cshtml" />
+    <Content Include="Views\Comments\LikeComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

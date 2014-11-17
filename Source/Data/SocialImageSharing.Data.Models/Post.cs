@@ -14,6 +14,7 @@ namespace SocialImageSharing.Data.Models
 		{
 			this.Likes = new HashSet<PostLike>();
 			this.Comments = new HashSet<PostComment>();
+			this.Favorites = new HashSet<UserFavoritePost>();
 		}
 
 		public int Id { get; set; }

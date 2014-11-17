@@ -1,0 +1,45 @@
+﻿@model SocialImageSharing.Web.ViewModels.Posts.LikePostViewModel
+
+<div class="well text-center">
+	@if (Request.IsAuthenticated)
+	{
+		var upButtonValue = Model.UserLikeValue == 1 ? 0 : 1;
+		var upButtonBtnClass = Model.UserLikeValue == 1 ? "btn-success" : "btn-info";
+		<div class="row">
+			@Ajax.ActionLink(" ", "LikePost", "Posts", new
+				{
+					id = Model.Post.Id,
+					value = upButtonValue
+				}, new AjaxOptions()
+				{
+					HttpMethod = "post",
+					InsertionMode = System.Web.Mvc.Ajax.InsertionMode.Replace,
+					UpdateTargetId = "post-like-panel-" + Model.Post.Id
+				}, new
+				{
+					@class = upButtonBtnClass + " btn-sm glyphicon glyphicon-chevron-up"
+				})
+		</div>
+	}
+	<div class="row">@Model.TotalLikeValue</div>
+	@if (Request.IsAuthenticated)
+	{
+		var downButtonValue = Model.UserLikeValue == -1 ? 0 : -1;
+		var downButtonBtnClass = Model.UserLikeValue == -1 ? "btn-success" : "btn-info";
+		<div class="row">
+			@Ajax.ActionLink(" ", "LikePost", "Posts", new
+				{
+					id = Model.Post.Id,
+					value = downButtonValue
+				}, new AjaxOptions()
+				{
+					HttpMethod = "post",
+					InsertionMode = System.Web.Mvc.Ajax.InsertionMode.Replace,
+					UpdateTargetId = "post-like-panel-" + Model.Post.Id
+				}, new
+				{
+					@class = downButtonBtnClass + " btn-sm glyphicon glyphicon-chevron-down"
+				})
+		</div>
+	}
+</div>

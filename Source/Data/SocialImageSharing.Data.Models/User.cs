@@ -18,6 +18,7 @@
 			this.CommentLikes = new HashSet<CommentLike>();
 			this.PostLikes = new HashSet<PostLike>();
 			this.PostComments = new HashSet<PostComment>();
+			this.Favorites = new HashSet<UserFavoritePost>();
 		}
 
 		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)

@@ -176,16 +176,17 @@ namespace SocialImageSharing.Web.Controllers
 				return new HttpStatusCodeResult(400, "Post requires an id");
 			}
 
-			var post = this.Data.Posts.All().FirstOrDefault(p => p.Id == id.Value);
+			var post = this.Data.Posts.All()
+				.FirstOrDefault(p => p.Id == id.Value);
 
 			if (post == null)
 			{
 				return new HttpStatusCodeResult(404, "Post not found");
 			}
 
-			if (value != 1 && value != -1)
+			if (value != -1 && value != 0 && value != 1)
 			{
-				return new HttpStatusCodeResult(400, "Value should be 1 or -1");
+				return new HttpStatusCodeResult(400, "Value should be -1, 0 or 1");
 			}
 
 			var user = this.CurrentUser;
@@ -194,25 +195,67 @@ namespace SocialImageSharing.Web.Controllers
 
 			if (like == null)
 			{
-				this.Data.PostLikes.Add(new PostLike()
+				like = new PostLike()
 				{
-					User = user,
-					Post = post,
-					Value = value
-				});
-				this.Data.SaveChanges();
+					PostId = id.Value,
+					Value = value,
+					UserId = user.Id
+				};
 
-				return Content((post.Likes.Count(l => l.Value == 1) - post.Likes.Count(l => l.Value == -1))
-					.ToString());
+				this.Data.PostLikes.Add(like);
 			}
 			else
 			{
 				like.Value = value;
-				this.Data.SaveChanges();
-
-				return Content((post.Likes.Count(l => l.Value == 1) - post.Likes.Count(l => l.Value == -1))
-					.ToString());
 			}
+
+			this.Data.SaveChanges();
+
+			var postLikes = this.Data.PostLikes.All()
+				.Where(l => l.PostId == post.Id);
+
+			var resultViewModel = new LikePostViewModel()
+			{
+				Post = post,
+				UserLikeValue = like.Value,
+				TotalLikeValue =
+					postLikes.Count(l => l.Value == 1) -
+					postLikes.Count(l => l.Value == -1)
+			};
+
+			return PartialView(resultViewModel);
+		}
+
+		[HttpGet]
+		[ChildActionOnly]
+		public ActionResult LikePost(int id)
+		{
+			var post = this.Data.Posts.All()
+				.FirstOrDefault(p => p.Id == id);
+
+			var viewModel = new LikePostViewModel()
+			{
+				Post = post
+			};
+
+			if (Request.IsAuthenticated)
+			{
+				var userId = this.CurrentUser.Id;
+
+				var currentUserLike = this.Data.PostLikes.All()
+					.FirstOrDefault(l => l.PostId == id && l.UserId == userId);
+
+				viewModel.UserLikeValue = currentUserLike == null ? (short)0 : currentUserLike.Value;
+			}
+
+			var postLikes = this.Data.PostLikes.All()
+				.Where(l => l.PostId == post.Id);
+
+			viewModel.TotalLikeValue =
+				postLikes.Count(l => l.Value == 1) -
+				postLikes.Count(l => l.Value == -1);
+
+			return PartialView(viewModel);
 		}
 
 		[HttpPost]

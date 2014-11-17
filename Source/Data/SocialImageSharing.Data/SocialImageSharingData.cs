@@ -21,11 +21,6 @@ namespace SocialImageSharing.Data
 			this.repositories = new Dictionary<Type, object>();
 		}
 
-		//public SocialImageSharingData()
-		//	: this(new SocialImageSharingDbContext())
-		//{
-		//}
-
 		public DbContext Context
 		{
 			get
@@ -33,7 +28,7 @@ namespace SocialImageSharing.Data
 				return this.context;
 			}
 		}
-
+			
 		public IDeletableEntityRepository<User> Users
 		{
 			get

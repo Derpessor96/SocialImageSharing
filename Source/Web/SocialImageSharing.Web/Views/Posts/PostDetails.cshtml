@@ -20,49 +20,8 @@
 </div>
 
 <div class="row">
-	<div class="col-md-2">
-		<div class="well">
-			Rating
-			<br />
-			@if (Request.IsAuthenticated)
-			{
-				@Ajax.ActionLink(" ", "LikePost", new
-					{
-						id = Model.Id,
-						value = 1
-					}, new AjaxOptions()
-					{
-						HttpMethod = "post",
-						OnSuccess = "like"
-					}, new
-					{
-						style = "display:" + (Model.LikeValue == 1 ? "none;" : ""),
-						id = "like-button",
-						@class = "btn btn-default glyphicon glyphicon-chevron-up "
-					})
-				<br />
-			}
-			<span id="like-value" class="like-value">@Html.DisplayFor(m => m.Rating)</span>
-			@if (Request.IsAuthenticated)
-			{
-				<br />
-				@Ajax.ActionLink(" ", "LikePost", new
-					{
-						id = Model.Id,
-						value = -1
-					}, new AjaxOptions()
-					{
-						HttpMethod = "post",
-						OnSuccess = "dislike"
-					}, new
-					{
-						style = "display:" + (Model.LikeValue == -1 ? "none;" : ""),
-						id = "dislike-button",
-						@class = "btn btn-default glyphicon glyphicon-chevron-down"
-					})
-			}
-			<br />
-		</div>
+	<div class="col-md-2" id="post-like-panel-@Model.Id">
+		@Html.Action("LikePost", "Posts", new { id = Model.Id })
 	</div>
 	@if (Request.IsAuthenticated)
 	{
