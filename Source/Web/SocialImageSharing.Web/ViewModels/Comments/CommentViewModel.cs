@@ -15,7 +15,7 @@ namespace SocialImageSharing.Web.ViewModels.Comments
 		public int Id { get; set; }
 
 		[Required]
-		[StringLength(100)]
+		[StringLength(300)]
 		[AllowHtml]
 		public string Content { get; set; }
 
