@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace SocialImageSharing.Web.ViewModels.Comments
 {
@@ -15,6 +16,7 @@ namespace SocialImageSharing.Web.ViewModels.Comments
 
 		[Required]
 		[StringLength(100)]
+		[AllowHtml]
 		public string Content { get; set; }
 
 		public string CreatorId { get; set; }

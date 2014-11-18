@@ -61,6 +61,7 @@ namespace SocialImageSharing.Web.Controllers
 
 		[HttpPost]
 		[Authorize]
+		[ValidateAntiForgeryToken]
 		public ActionResult MakeComment(int? postId, CommentViewModel newComment)
 		{
 			if (postId == null)

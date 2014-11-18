@@ -10,6 +10,7 @@
 		@class = "form"
 	}))
 {
+	@Html.AntiForgeryToken()
 	@Html.ValidationSummary()
 	@Html.HiddenFor(c => c.PostId)
 	@Html.TextAreaFor(c => c.Content, new { @class = "form-control" })
