@@ -19,6 +19,9 @@
 			this.PostLikes = new HashSet<PostLike>();
 			this.PostComments = new HashSet<PostComment>();
 			this.Favorites = new HashSet<UserFavoritePost>();
+
+			// Fixes issues when working with UserManager
+			this.CreatedOn = DateTime.Now;
 		}
 
 		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)

@@ -3,9 +3,12 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@ViewBag.Title - My ASP.NET Application</title>
+	<title>@ViewBag.Title - Social Image Sharing</title>
 	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/jquery-ajax")
 	@Scripts.Render("~/bundles/modernizr")
+	@RenderSection("styles", required: false)
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,12 +23,12 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li>@Html.ActionLink("All Posts", "Best", "Posts")</li>
+					<li>@Html.ActionLink("All Posts", "Best", "Posts", new { area = "" }, null)</li>
 					@if (Request.IsAuthenticated)
 					{
-						<li>@Html.ActionLink("Make a Post", "MakePost", "Posts")</li>
-						<li>@Html.ActionLink("Your Posts", "PostsByRating", "Profiles", new { id = User.Identity.GetUserId() }, null)</li>
-						<li>@Html.ActionLink("Your Favorites", "FavoritesByRating", "Profiles", new { id = User.Identity.GetUserId() }, null)</li>
+						<li>@Html.ActionLink("Make a Post", "MakePost", "Posts", new { area = "" }, null)</li>
+						<li>@Html.ActionLink("Your Posts", "PostsByRating", "Profiles", new { area = "", id = User.Identity.GetUserId() }, null)</li>
+						<li>@Html.ActionLink("Your Favorites", "FavoritesByRating", "Profiles", new { area = "", id = User.Identity.GetUserId() }, null)</li>
 					}
 				</ul>
 				@Html.Partial("_LoginPartial")
@@ -41,7 +44,6 @@
 	<footer>
 		<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
 	</footer>
-	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/bootstrap")
 	@RenderSection("scripts", required: false)
 </body>

@@ -9,6 +9,8 @@ namespace SocialImageSharing.Web.Controllers
 {
 	public class ImagesController : BaseController
 	{
+		private const string MimeType = "image/jpeg";
+
 		public ImagesController(ISocialImageSharingData data)
 			: base(data)
 		{
@@ -21,10 +23,10 @@ namespace SocialImageSharing.Web.Controllers
 
 			if (imageData == null)
 			{
-				return Content("");
+				return new HttpStatusCodeResult(404, "Image not found");
 			}
 
-			return File(imageData, "image/jpeg");
+			return File(imageData, MimeType);
 		}
 	}
 }

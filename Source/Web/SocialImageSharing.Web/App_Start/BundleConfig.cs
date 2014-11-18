@@ -9,7 +9,9 @@ namespace SocialImageSharing.Web
 		public static void RegisterBundles(BundleCollection bundles)
 		{
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-						"~/Scripts/jquery-{version}.js",
+						"~/Scripts/kendo/jquery.min.js"));
+
+			bundles.Add(new ScriptBundle("~/bundles/jquery-ajax").Include(
 						"~/Scripts/jquery.unobtrusive-ajax.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -20,6 +22,10 @@ namespace SocialImageSharing.Web
 			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
 						"~/Scripts/modernizr-*"));
 
+			bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+						"~/Scripts/kendo/kendo.all.min.js",
+						"~/Scripts/kendo/kendo.aspnetmvc.min.js"));
+
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
 					  "~/Scripts/bootstrap.js",
 					  "~/Scripts/respond.js"));
@@ -27,6 +33,11 @@ namespace SocialImageSharing.Web
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap.css",
 					  "~/Content/site.css"));
+
+			bundles.Add(new StyleBundle("~/Content/kendo/css").Include(
+						"~/Content/Kendo/kendo.common.min.css",
+						"~/Content/Kendo/kendo.common-bootstrap.min.css",
+						"~/Content/Kendo/kendo.silver.min.css"));
 
 			// Set EnableOptimizations to false for debugging. For more information,
 			// visit http://go.microsoft.com/fwlink/?LinkId=301862

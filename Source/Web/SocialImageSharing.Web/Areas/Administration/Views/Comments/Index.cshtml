@@ -1,0 +1,34 @@
+﻿@using SocialImageSharing.Web.Areas.Administration.ViewModels.Comments;
+@{
+	ViewBag.Title = "Comments";
+	const string ControllerName = "Comments";
+}
+
+<h2>@ViewBag.Title</h2>
+@(Html.Kendo()
+	.Grid<CommentViewModel>()
+	.Name("posts-grid")
+	.Columns(cols =>
+		{
+			cols.Bound(p => p.Id);
+			cols.Bound(p => p.Content);
+			cols.Bound(p => p.CreatorName);
+			cols.Bound(p => p.CreatedOn).Format("{0:dd/MM/yyyy hh:mm}");
+			cols.Bound(p => p.ModifiedOn).Format("{0:dd/MM/yyyy hh:mm}");
+			cols.Command(com => com.Edit()).Title("Edit");
+			cols.Command(com => com.Destroy()).Title("Delete");
+		})
+	.ColumnMenu()
+	.Pageable(page => page.Refresh(true))
+	.Sortable()
+	.Groupable()
+	.Filterable()
+	.Editable(edit => edit.Mode(GridEditMode.PopUp))
+	.DataSource(data =>
+		data
+			.Ajax()
+			.Model(m => m.Id(p => p.Id))
+			.Read(read => read.Action("Read", ControllerName))
+			.Update(update => update.Action("Update", ControllerName))
+			.Destroy(destroy => destroy.Action("Destroy", ControllerName))
+))

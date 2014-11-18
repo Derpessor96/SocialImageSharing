@@ -6,8 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SocialImageSharing.Web.Areas.Administration.Controllers
+namespace SocialImageSharing.Web.Areas.Administration.Controllers.Base
 {
+	[Authorize(Roles = "admin")]
 	public abstract class AdminController : BaseController
 	{
 		public AdminController(ISocialImageSharingData data)
