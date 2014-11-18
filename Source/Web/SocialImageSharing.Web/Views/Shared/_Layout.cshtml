@@ -30,6 +30,11 @@
 						<li>@Html.ActionLink("Your Posts", "PostsByRating", "Profiles", new { area = "", id = User.Identity.GetUserId() }, null)</li>
 						<li>@Html.ActionLink("Your Favorites", "FavoritesByRating", "Profiles", new { area = "", id = User.Identity.GetUserId() }, null)</li>
 					}
+					@if (HttpContext.Current.User.IsInRole("admin"))
+					{
+						<li>@Html.ActionLink("Posts admin", "Index", "Posts", new { area = "Administration" }, null)</li>
+						<li>@Html.ActionLink("Comments admin", "Index", "Comments", new { area = "Administration" }, null)</li>
+					}
 				</ul>
 				@Html.Partial("_LoginPartial")
 			</div>
