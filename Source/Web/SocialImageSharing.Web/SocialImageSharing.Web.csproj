@@ -479,7 +479,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\UI\postDetailsLoggedIn.js" />
+    <Content Include="Scripts\UI\favoritePost.js" />
     <Content Include="Scripts\UI\postsListLoadButton.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
